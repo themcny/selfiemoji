@@ -1,5 +1,20 @@
 module EmojiHelper
-  def emojify(content)
-    Twemoji.parse(h(content)).html_safe if content.present?
+  def emojify(emotion)
+    Twemoji.parse(h(emotion_to_emoji(emotion))).html_safe if emotion.present?
   end
+  def emotion_to_emoji(emotion)
+    emojis_emotion = {
+      'happiness' => ':laughing:',
+      'sadness' => ':sob:',
+      'surprise' => ':open_mouth:',
+      'anger' => ':rage:',
+      'fear' => ':fearful:',
+      'contempt' => ':unamused:',
+      'disgust' => ':mask:',
+      'neutral' => ':neutral_face:'
+    }
+    return emojis_emotion[emotion]
+  end
+  # happiness
+  # sadness, surprise, anger, fear, contempt, and disgust or neutral
 end

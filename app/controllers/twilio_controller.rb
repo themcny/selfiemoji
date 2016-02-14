@@ -2,7 +2,8 @@ require 'twilio-ruby'
  
 # put your own credentials here 
 # Required for any Twilio Access Token
-account_sid = 'SKd3516f4379a9b849305954900053465e' 
+account_sid = 'AC782792d9197866bebda2b141ac46a273k' 
+api_key = 'SKd3516f4379a9b849305954900053465e'
 api_secret = ENV['API_SECRET']
 
 auth_token = '[AuthToken]' 

@@ -12,7 +12,7 @@
   <%= params["session_key_name"] %>
 <% end %>
 
-<%= emojify('sadness') %>
-
 <img src="<%= @image_path %>">
 <%= button_to "Emojify", {controller: "pictures", action: "get_emotion", image: @image_path} %>
+<%= emoji_test(":heart_eyes:", image_size:"36x36") %>
+

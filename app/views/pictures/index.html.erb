@@ -15,4 +15,4 @@
 <%= emojify('sadness') %>
 
 <img src="<%= @image_path %>">
-<%= button_to "Emojify", pictures_get_emotion_path, {image: @image_path} %>
+<%= button_to "Emojify", {controller: "pictures", action: "get_emotion", image: @image_path} %>

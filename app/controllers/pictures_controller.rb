@@ -37,9 +37,6 @@ class PicturesController < ApplicationController
         http.request(request)
     end
 
-    p "*" * 50
-    p response.body
-
     redirect_to root_path
   end
 end

@@ -1,18 +1,20 @@
-<h1>Pictures#index</h1>
+<h1 class="jumbotron">Pictures#index</h1>
 <p>Find me in app/views/pictures/index.html.erb</p>
-<%= headshot_default_config(Rails.application.config.session_options[:key], headshot_capture_path) %>
 
-<%= headshot_camera %>
+<div id="camera-container">
+  <%= headshot_default_config(Rails.application.config.session_options[:key], headshot_capture_path) %>
 
-<br/><br/>
+  <%= headshot_camera %>
 
-<%= headshot_snap_button('Shoot') %>
+  <br/><br/>
+
+  <%= headshot_snap_button('Shoot', id:'shoot-button') %>
+</div>
 
 <%if params["session_key_name"] %>
   <%= params["session_key_name"] %>
 <% end %>
 
-<img src="<%= @image_path %>">
-<%= button_to "Emojify", {controller: "pictures", action: "get_emotion", image: @image_path} %>
-<%= emoji_test(":heart_eyes:", image_size:"36x36") %>
-
+<div id="latest-picture-container" class="hidden">
+  <%= button_to "Emojify", {controller: "pictures", action: "get_emotion", image: @image_path} %>
+</div>

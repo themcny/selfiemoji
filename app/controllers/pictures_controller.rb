@@ -36,17 +36,19 @@ class PicturesController < ApplicationController
     p "JSON __ " * 50
     p json
     emojify(json.first)
+     emojify(json.first)
+
     redirect_to root_path
   end
 
   def emojify(json_object)
-    emoji_pic = emotion_to_emoji(json_object["scores"].max_by{|k,v| v}[0])
+     emoji_pic = emotion_to_emoji(json_object["scores"].max_by{|k,v| v}[0])
     src = Magick::Image.read("public/emoji/#{emoji_pic}")[0]
     resized_src = src.resize_to_fill(json_object["faceRectangle"]["width"], json_object["faceRectangle"]["height"])
     dst = Magick::Image.read("public/headshots/#{HeadshotPhoto.last.image_file_name}")[0]
     coord_x = (json_object["faceRectangle"]["left"] + (json_object["faceRectangle"]["width"]/2)) - 150
     coord_y = (json_object["faceRectangle"]["top"] + (json_object["faceRectangle"]["height"]/2)) - 200
-    result = dst.composite(resized_src, Magick::CenterGravity, coord_x, coord_y, Magick::OverCompositeOp)
+    result = dst.composite(resized_src, Magick::NorthWestGravity, json_object["faceRectangle"]["left"], json_object["faceRectangle"]["top"], Magick::OverCompositeOp)
     result.write('public/new.png')
   end
 end

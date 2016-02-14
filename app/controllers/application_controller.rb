@@ -6,14 +6,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def headshot_post_save(file_path)
-    super
-  	p "0" * 50
-    p "file_path:"
-		p file_path
+  	# p "0" * 50
+    # p "file_path:"
+		# p file_path
+
 
     uri = URI('https://api.projectoxford.ai/emotion/v1.0/recognize')
-
-
     request = Net::HTTP::Post.new(uri.request_uri)
     # Request headers
     request['Content-Type'] = 'application/json'
@@ -30,10 +28,11 @@ class ApplicationController < ActionController::Base
         http.request(request)
     end
 
-    p Rails.public_path
+    # p Rails.public_path
 
-    p "*" * 50
-    p response.body
+    # p "*" * 50
+    # p response.body
 
+    super
 	end
 end

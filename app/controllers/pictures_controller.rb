@@ -6,22 +6,13 @@ class PicturesController < ApplicationController
   helper :headshot
   def index
     @image_path = "/headshots/#{HeadshotPhoto.last.image_file_name}"
-    emoji_pic = emotion_to_emoji("happiness")
-    src = Magick::Image.read("public/emoji/#{emoji_pic}")[0]
-    dst = Magick::Image.read("public/headshots/headshot_capture_2300_1455425315.jpg")[0]
-    # coord_x = (faceRectangle["left"] + (faceRectangle["width"]/2)) - 150
-    # coord_y = (faceRectangle["top"] + (faceRectangle["height"]/2)) - 200
-    result = dst.composite(src, Magick::CenterGravity, -30, 40, Magick::OverCompositeOp)
-    result.write('public/composite2.gif')
   end
 
   def get_emotion
-  	p "0" * 50
   	imgur_session = Imgurapi::Session.new(client_id: ENV['IMGUR_CLIENT_ID'], client_secret: ENV['IMGUR_CLIENT_SECRET'], access_token: ENV['IMGUR_ACCESS_TOKEN'], refresh_token: ENV['IMGUR_REFRESH_SECRET'])
 
   	account = imgur_session.account.account
   	image = imgur_session.image.image_upload("public/#{params[:image]}")
-  	p image.link
 
     uri = URI('https://api.projectoxford.ai/emotion/v1.0/recognize')
     request = Net::HTTP::Post.new(uri.request_uri)
@@ -32,15 +23,34 @@ class PicturesController < ApplicationController
     # Request body
 
     request.body = {url: image.link}.to_json
-    puts request.body
 
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         http.request(request)
     end
 
-    p "*" * 50
+    response.body
+    p "hot bod __ " * 50
     p response.body
-
+    json = JSON.parse(response.body)
+    # json.first['faceRectange']
+    p "JSON __ " * 50
+    p json
+    emojify(json.first)
     redirect_to root_path
+  end
+
+  def emojify(json_object)
+  	p " * - " * 50
+    emoji_pic = emotion_to_emoji(json_object["scores"].max_by{|k,v| v}[0])
+    src = Magick::Image.read("public/emoji/#{emoji_pic}")[0]
+    dst = Magick::Image.read("public/headshots/#{HeadshotPhoto.last.image_file_name}")[0]
+    coord_x = (json_object["faceRectangle"]["left"] + (json_object["faceRectangle"]["width"]/2)) - 150
+    coord_y = (json_object["faceRectangle"]["top"] + (json_object["faceRectangle"]["height"]/2)) - 200
+    p json_object["faceRectangle"]
+    p json_object["faceRectangle"]["width"]/2
+    p coord_x
+    p coord_y
+    result = dst.composite(src, Magick::CenterGravity, json_object["faceRectangle"]["left"], json_object["faceRectangle"]["top"], Magick::OverCompositeOp)
+    result.write('public/new.png')
   end
 end

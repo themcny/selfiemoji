@@ -15,6 +15,4 @@ module EmojiHelper
     }
     return emojis_emotion[emotion]
   end
-  # happiness
-  # sadness, surprise, anger, fear, contempt, and disgust or neutral
 end

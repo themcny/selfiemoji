@@ -6,34 +6,32 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def headshot_post_save(file_path)
-  	# p "*" * 50
-    # p "file_path:"
-		# p file_path
+  	p "0" * 50
+    p "file_path:"
+		p file_path
 
     uri = URI('https://api.projectoxford.ai/emotion/v1.0/recognize')
-    uri.query = URI.encode_www_form({
-        # Request parameters
-        # 'faceRectangles' => '{string}'
-    })
+
 
     request = Net::HTTP::Post.new(uri.request_uri)
     # Request headers
     request['Content-Type'] = 'application/json'
     # Request headers
-    request['Ocp-Apim-Subscription-Key'] = ENV["PRIMARY_KEY"]
+    request['Ocp-Apim-Subscription-Key'] = "27d9fee3bc534fe58781b5d9aa9fcf7c"
     # Request body
-    p "*" * 50
-    p "request.body:"
-    request.body = {"url" => "http://the100percentyou.com/wp-content/uploads/2011/03/Happy-Boy.jpg"}
-    p request.body
-    p "*" * 50
+    request.body = {url: file_path}.to_json
+
+    # p "*" * 50
+    # p request.body
 
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         http.request(request)
     end
+
+    p Rails.public_path
+
     p "*" * 50
-    p response
-    puts response.body
+    p response.body
 
 	end
 end

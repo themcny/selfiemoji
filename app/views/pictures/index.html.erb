@@ -13,3 +13,6 @@
 <% end %>
 
 <%= emojify('sadness') %>
+
+<img src="<%= @image_path %>">
+<%= button_to "Emojify", pictures_get_emotion_path, {image: @image_path} %>

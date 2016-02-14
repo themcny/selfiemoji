@@ -53,6 +53,8 @@ GEM
     dotenv (2.0.2)
     erubis (2.7.0)
     execjs (2.6.0)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     headshot (0.1.6)
@@ -60,6 +62,8 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    imgurapi (3.0.0)
+      faraday
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -78,6 +82,7 @@ GEM
     minitest (5.8.4)
     multi_json (1.11.2)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
@@ -159,6 +164,7 @@ DEPENDENCIES
   dotenv
   headshot
   httparty
+  imgurapi
   jbuilder (~> 2.0)
   jquery-rails
   pg

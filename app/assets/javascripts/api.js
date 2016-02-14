@@ -1,6 +1,26 @@
-// $(document).ready(function(){
-// //call functions
-// });
+$(document).ready(function(){
+//call functions
+  // hideCamera();
+});
+function hideCamera(){
+  $(document).on("click", "#shoot-button", function(e){
+    $('#camera-container').addClass('hidden');
+    $.ajax({
+      url: "/pictures/last_picture",
+      type: "GET"
+    })
+    .done(function(response) {
+      $('#latest-picture-container').append(
+        "<img src=headshots/" + response.photo + ">"
+      )
+    })
+    .fail(function() {
+      console.log("Failure")
+    })
+    $('#latest-picture-container').removeClass('hidden');
+  })
+}
+
 //
 //
 // function getEmotionData(){

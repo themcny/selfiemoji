@@ -51,4 +51,8 @@ class PicturesController < ApplicationController
     result = dst.composite(resized_src, Magick::NorthWestGravity, json_object["faceRectangle"]["left"], json_object["faceRectangle"]["top"], Magick::OverCompositeOp)
     result.write('public/new.png')
   end
+
+  def last_picture
+    render json: {photo: HeadshotPhoto.last.image_file_name}
+  end
 end

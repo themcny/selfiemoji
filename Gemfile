@@ -39,7 +39,7 @@ gem 'rmagick', '2.13.2'
 
 gem 'twilio-ruby'
 
-gem 'bootstrap'
+# gem 'bootstrap'
 
 gem 'sprockets-rails'
 

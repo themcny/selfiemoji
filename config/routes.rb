@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   post "headshot/capture" => 'headshot#capture', :as => :headshot_capture
   get 'pictures/index'
   post 'pictures/get_emotion'
+  get 'pictures/last_picture'
 
   root 'pictures#index'
   resources 'pictures'

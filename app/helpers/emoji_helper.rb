@@ -2,7 +2,6 @@ module EmojiHelper
   def emoji_test(content, **options)
     Twemoji.parse(h(content), options).html_safe if content.present?
   end
-
   def emojify(emotion)
     Twemoji.parse(h(emotion_to_emoji(emotion))).html_safe if emotion.present?
   end

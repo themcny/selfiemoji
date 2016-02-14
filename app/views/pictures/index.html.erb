@@ -8,4 +8,8 @@
 
 <%= headshot_snap_button('Shoot') %>
 
+<%if params["session_key_name"] %>
+  <%= params["session_key_name"] %>
+<% end %>
+
 <%= emojify('sadness') %>

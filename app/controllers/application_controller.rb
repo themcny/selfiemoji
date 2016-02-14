@@ -7,9 +7,6 @@ class ApplicationController < ActionController::Base
 
   def headshot_post_save(file_path)
   	p "0" * 50
-    p "file_path:"
-		p file_path
-
     uri = URI('https://api.projectoxford.ai/emotion/v1.0/recognize')
 
 
@@ -17,21 +14,19 @@ class ApplicationController < ActionController::Base
     # Request headers
     request['Content-Type'] = 'application/json'
     # Request headers
-    request['Ocp-Apim-Subscription-Key'] = "27d9fee3bc534fe58781b5d9aa9fcf7c"
+    request['Ocp-Apim-Subscription-Key'] = ENV['PRIMARY_KEY']
+    p ENV['PRIMARY_KEY']
     # Request body
-    request.body = {url: file_path}.to_json
-
-    # p "*" * 50
-    # p request.body
+    request.body = {url: HeadshotPhoto.last.image_file_name}.to_json
 
     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
         http.request(request)
     end
 
-    p Rails.public_path
-
     p "*" * 50
     p response.body
+
+    super
 
 	end
 end

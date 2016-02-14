@@ -8,14 +8,14 @@ module EmojiHelper
   end
   def emotion_to_emoji(emotion)
     emojis_emotion = {
-      'happiness' => ':laughing:',
-      'sadness' => ':sob:',
-      'surprise' => ':open_mouth:',
-      'anger' => ':rage:',
-      'fear' => ':fearful:',
-      'contempt' => ':unamused:',
-      'disgust' => ':mask:',
-      'neutral' => ':neutral_face:'
+      'happiness' => 'joy.png',
+      'sadness' => 'sob.png',
+      'surprise' => 'surprise.png',
+      'anger' => 'rage.png',
+      'fear' => 'fearful.png',
+      'contempt' => 'contempt.png',
+      'disgust' => 'disgust.png',
+      'neutral' => 'neutral.png'
     }
     return emojis_emotion[emotion]
   end

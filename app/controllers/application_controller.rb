@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def headshot_post_save(file_path)
+    super
   	p "0" * 50
     p "file_path:"
 		p file_path
@@ -17,9 +18,10 @@ class ApplicationController < ActionController::Base
     # Request headers
     request['Content-Type'] = 'application/json'
     # Request headers
-    request['Ocp-Apim-Subscription-Key'] = "27d9fee3bc534fe58781b5d9aa9fcf7c"
+    request['Ocp-Apim-Subscription-Key'] = ENV['PRIMARY_KEY']
     # Request body
-    request.body = {url: file_path}.to_json
+
+    request.body = {url: HeadshotPhoto.last.image_file_name}.to_json
 
     # p "*" * 50
     # p request.body

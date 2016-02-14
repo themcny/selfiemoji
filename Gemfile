@@ -39,6 +39,10 @@ gem 'rmagick', '2.13.2'
 
 gem 'twilio-ruby'
 
+gem 'bootstrap'
+
+gem 'sprockets-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

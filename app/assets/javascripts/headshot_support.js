@@ -21,8 +21,8 @@ var headshotInitializer = {
     setup: function(width, height, railsTokens) {
         document.write(headshot.get_html(width, height, railsTokens));
         if (params.session_key_name) {
-          params.session_key_name : "";
-        }
+          params.session_key_name = "";
+        };
     },
     setupHTML: function(width, height, railsTokens) {
         return headshot.get_html(width, height, railsTokens);

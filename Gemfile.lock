@@ -163,12 +163,8 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
-<<<<<<< HEAD
-  turbolinks
   twemoji
-=======
   twilio-ruby
->>>>>>> 98f0d5f3ea69eff1a55b239fd8ee57c9e9db199c
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 

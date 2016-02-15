@@ -70,8 +70,8 @@ window.headshot = {
 		}
 		return false; // no hook defined
 	},
+
 	hideCamera: function(){
-		console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     $('#camera-container').addClass('hidden');
     $.ajax({
       url: "/pictures/last_picture",

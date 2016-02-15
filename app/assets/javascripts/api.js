@@ -1,6 +1,7 @@
 $(document).ready(function(){
 //call functions
   emojify();
+  takeAnother();
 });
 
 function emojify(){
@@ -13,6 +14,17 @@ function emojify(){
       data: {image: imgSrc}
     }).done(function(response){
       console.log("success!!!!! :$")
+      $('#latest-picture-container').children().remove();
+      $('#latest-picture-container').append('<img src="new.png">');
+      $('#latest-picture-container').append('<button id="take-another">Take another</button>')
     })
+  })
+}
+
+function takeAnother(){
+  $(document).on('click', "#take-another", function(e){
+    e.preventDefault();
+    $("#latest-picture-container").addClass('hidden');
+    $("#camera-container").removeClass('hidden');
   })
 }

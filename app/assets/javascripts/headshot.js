@@ -213,6 +213,7 @@ window.headshot = {
 				// and pass raw API script results to function
 				this.fire_hook('onComplete', msg.toString());
 				this.hideCamera();
+				debugger
 				break;
 
 			default:
